@@ -21,6 +21,8 @@ public class WheelChairControllerScript : MonoBehaviour
     
     [Header("Control Inputs")]
     [Range(0, 1)]
+    [TextArea]
+    [Tooltip("Joystick forward. Use this to start")]
     public float forward;           // joystick forward
     public float ForwardTarget;     // defines the meter to our projected target (see Projected)
 
@@ -28,7 +30,7 @@ public class WheelChairControllerScript : MonoBehaviour
     public float SetRadius;         // the radius of the circle
 
     
-    private float speedFactor;       // multiplicator for the wheels, should be fixed. 100 is a nice value
+    private float speedFactor = 100;       // multiplicator for the wheels, should be fixed. 100 is a nice value
 
     [Header("Control Outputs")]
     public float IsRadius;          // the actual radius the chair drives
