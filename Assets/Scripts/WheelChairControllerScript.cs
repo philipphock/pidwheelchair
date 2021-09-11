@@ -27,8 +27,8 @@ public class WheelChairControllerScript : MonoBehaviour
     [Range(5, 10)]
     public float SetRadius;         // the radius of the circle
 
-    [Range(0, 500)]
-    public float speedFactor;       // multiplicator for the wheels, should be fixed. 200 is a nice value
+    
+    private float speedFactor;       // multiplicator for the wheels, should be fixed. 100 is a nice value
 
     [Header("Control Outputs")]
     public float IsRadius;          // the actual radius the chair drives
