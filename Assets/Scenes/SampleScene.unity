@@ -724,13 +724,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1843705507}
+  - component: {fileID: 1843705511}
   - component: {fileID: 1843705506}
   - component: {fileID: 1843705505}
   - component: {fileID: 1843705504}
   - component: {fileID: 1843705508}
   - component: {fileID: 1843705510}
   - component: {fileID: 1843705509}
-  - component: {fileID: 1843705511}
   m_Layer: 0
   m_Name: WheelChair
   m_TagString: Untagged
@@ -874,29 +874,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eedc76b10078854b8ffb741381e3005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsRadius: 0
+  forward: 0
   ForwardTarget: 2
   SetRadius: 7
+  speedFactor: 100
+  IsRadius: 0
+  steer: 0
+  steeringAngle: 0
+  throttleLeft: 0
+  throttleRight: 0
   TargetObject: {fileID: 825943747}
   Projected: {fileID: 1006412328}
   Center: {fileID: 742402753}
   Wheelchair: {fileID: 1843705503}
   WheelChairLeft: {fileID: 446247832}
   WheelChairRight: {fileID: 1776146518}
-  forward: 0
-  steer: 0
-  steeringAngle: 0
-  speedFactor: 100
-  throttleLeft: 0
-  throttleRight: 0
   SetPoint: 0
   pGain: 0.01
   iGain: 0.08
   dGain: 0.1
+  gainFactor: 1
   min: -0.3
   max: 0.3
-  gainFactor: 1
   p: 0
   i: 0
   c: 0
-  target: {x: 0, y: 0, z: 0}

@@ -5,69 +5,90 @@ using UnityEngine;
 
 public class WheelChairControllerScript : MonoBehaviour
 {
+
+
+    ///
+    /// <summary>
+    /// A simple PID controlled wheelchair simulation to drive in a circle
+    /// </summary>
+    /// 
     /// <note>
     /// The camera is facing down along the z angle, thus all forward directions are transform.up not transform.forward!
     /// </note>
 
-    public float IsRadius;
-    public float ForwardTarget;
-    public float  SetRadius;
+    
 
-    public GameObject TargetObject;
-    public GameObject Projected;
-
-
-    public GameObject Center;
-    public GameObject Wheelchair;
-
-    public GameObject WheelChairLeft;
-    public GameObject WheelChairRight;
-
-
+    
+    [Header("Control Inputs")]
     [Range(0, 1)]
-    public float forward;
+    public float forward;           // joystick forward
+    public float ForwardTarget;     // defines the meter to our projected target (see Projected)
+
+    [Range(5, 10)]
+    public float SetRadius;         // the radius of the circle
+
+    [Range(0, 500)]
+    public float speedFactor;       // multiplicator for the wheels, should be fixed. 200 is a nice value
+
+    [Header("Control Outputs")]
+    public float IsRadius;          // the actual radius the chair drives
     [Range(-1, 1)]
-    public float steer;
+    public float steer;             // joystick left/right
 
-    public float steeringAngle;
+    public float steeringAngle;     // the angle to steer towards the target
 
-    [Range(0, 100)]
-    public float speedFactor;
-    
     [Range(0, 1)]
-    public float throttleLeft = 0;
-    
+    public float throttleLeft = 0;  // motor power ratio left
     [Range(0, 1)]
-    public float throttleRight = 0;
+    public float throttleRight = 0; // motor power ratio right
 
+    [Header("Simulation Components")]
+    public GameObject TargetObject; // the target the chair aims for (for visualiziation only)
+    public GameObject Projected;    // a target in front of the chair ( see ForwardTarget)
+
+
+    public GameObject Center;       // the center of the circle
+    public GameObject Wheelchair;   // the wheelchair itself
+
+    public GameObject WheelChairLeft; // the left motor
+    public GameObject WheelChairRight; // the right motor
+
+
+    [Header("PID Inputs")]
     // the set point is the angle between the target and the forward vector, this should be 0
-    public float SetPoint;
+    public float SetPoint;  
+
+    public float pGain; 
+    public float iGain;
+    public float dGain;
+
+    public float gainFactor; // multiplied with each Gain, should be 1
+
+
+    public float min;        // min value the PID generates
+    public float max;        // max value the PID generates
+
+    [Header("PID Outputs")]
+    public float p;         // the process variable (steering angle)
+    public float i;         // the integral value of the PID
+    public float c;         // the control variable (= steer; joystick left/right)
 
 
 
-    private Rigidbody rbl;
-    private Rigidbody rbr;
+
+
+    private Rigidbody rbl; // rigid nody of the left motor
+    private Rigidbody rbr; // rigid nody of the right motor
+
 
     //https://github.com/ms-iot/pid-controller
     private PidController.PidController pid;
 
 
 
-    public float pGain;
-    public float iGain;
-    public float dGain;
 
 
-    public float min;
-    public float max;
-
-    public float gainFactor;
-
-    public float p;
-    public float i;
-    public float c;
-
-    public Vector3 target = new Vector3();
+    private Vector3 target = new Vector3(); // position of the target
 
 
 
@@ -88,6 +109,10 @@ public class WheelChairControllerScript : MonoBehaviour
     }
 
     void FixedUpdate(){
+
+
+        // calculating the steering angle
+        // we project a virtual target in front of the chair, then finding the nearest point on our circle and steer towards this point
 
         // this is a target ForwardTarget m in front of the wheelchair
         Vector3 forwardFromWheelchair = Wheelchair.transform.position + Wheelchair.transform.up * ForwardTarget;
@@ -112,6 +137,7 @@ public class WheelChairControllerScript : MonoBehaviour
         steeringAngle = Vector2.SignedAngle(v0,v1);
 
 
+        // Setting up pid vars
 
         pid.GainDerivative = dGain;
         pid.GainIntegral = iGain;
@@ -126,6 +152,8 @@ public class WheelChairControllerScript : MonoBehaviour
 
         
 
+        // this part is for controlling the wheels
+        // we simply move/steer both wheels by adding relative forces to each wheel and subtracting a factor from it when steering in a direction
         steer = c;
 
 
