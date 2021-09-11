@@ -874,10 +874,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eedc76b10078854b8ffb741381e3005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forward: 0
+  forward: 0.497
   ForwardTarget: 2
   SetRadius: 7
-  speedFactor: 100
   IsRadius: 0
   steer: 0
   steeringAngle: 0
