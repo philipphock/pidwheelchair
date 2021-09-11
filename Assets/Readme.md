@@ -3,6 +3,6 @@ A simple PID controlled wheelchair simulation to drive in a circle
 # Run
 
 - Klick Start
-- Seleect WheelChair
+- Select WheelChair
 - Move Forward slider
 - Play with the Radius slider
