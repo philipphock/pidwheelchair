@@ -30,17 +30,17 @@ namespace PidController
         /// <param name="timeSinceLastUpdate">timespan of the elapsed time
         /// since the previous time that ControlVariable was called</param>
         /// <returns>Value of the variable that needs to be controlled</returns>
-        public double ControlVariable(TimeSpan timeSinceLastUpdate)
+        public double ControlVariable(float Seconds)
         {
             double error = SetPoint - ProcessVariable;
 
             // integral term calculation
-            IntegralTerm += (GainIntegral * error * timeSinceLastUpdate.TotalSeconds);
+            IntegralTerm += (GainIntegral * error * Seconds);
             IntegralTerm = Clamp(IntegralTerm);
 
             // derivative term calculation
             double dInput = processVariable - ProcessVariableLast;
-            double derivativeTerm = GainDerivative * (dInput / timeSinceLastUpdate.TotalSeconds);
+            double derivativeTerm = GainDerivative * (dInput / Seconds);
 
             // proportional term calcullation
             double proportionalTerm = GainProportional * error;
