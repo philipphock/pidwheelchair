@@ -1416,7 +1416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eedc76b10078854b8ffb741381e3005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forward: 1
+  forward: 0.477
   ForwardTarget: 2
   Autopilot: 1
   SetRadius: 7
@@ -1435,9 +1435,9 @@ MonoBehaviour:
   WheelChairLeftMesh: {fileID: 222325050}
   WheelChairRightMesh: {fileID: 1100747360}
   SetPoint: 0
-  pGain: 0.01
-  iGain: 0.08
-  dGain: 0.1
+  pGain: 0.05
+  iGain: 0.001
+  dGain: 0.001
   gainFactor: 1
   min: -1
   max: 1
