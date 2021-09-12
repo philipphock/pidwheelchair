@@ -225,11 +225,11 @@ public class WheelChairControllerScript : MonoBehaviour
         }
         
 
-        throttleLeft = forward - brL;
-        throttleRight = forward - brR;
+        throttleLeft = forward - brR;
+        throttleRight = forward - brL;
 
-        rw.motorTorque = throttleLeft * speedFactor;
-        lw.motorTorque = throttleRight * speedFactor;
+        rw.motorTorque = throttleRight * speedFactor;
+        lw.motorTorque = throttleLeft * speedFactor;
 
         IsRadius = Vector3.Distance(Center.transform.position, Wheelchair.transform.position);
 
