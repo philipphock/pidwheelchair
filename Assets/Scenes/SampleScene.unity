@@ -791,7 +791,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742402753}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 5, y: 0, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1355,11 +1355,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eedc76b10078854b8ffb741381e3005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forward: 0.477
+  forward: 0.515
   ForwardTarget: 2
   Autopilot: 1
   SetRadius: 7
-  speedFactor: 30000
+  speedFactor: 40000
   IsRadius: 0
   steer: 0
   steeringAngle: 0

@@ -162,16 +162,22 @@ public class WheelChairControllerScript : MonoBehaviour
 
         Projected.transform.position = forwardFromWheelchair;
         // get the vector from the center to that target
-        target = forwardFromWheelchair - Center.transform.position; 
-        // normalize it to have the direction
-        target.Normalize();
-        // multiply with radius to have it on the circle
-        target *= SetRadius;
-        // this is the point we want to steer
-        TargetObject.transform.position = target;
-        // now calculate the steering angle
+        Vector3 CenterToProjectionVector = forwardFromWheelchair - Center.transform.position;
+        
+        Debug.DrawLine(forwardFromWheelchair, Center.transform.position, Color.red);
 
-        // first we get the target direction:
+        // normalize it to have the direction
+        CenterToProjectionVector.Normalize();
+
+        // from the center, along CenterToProjectionVector with SetRadius steps
+        target = Center.transform.position + CenterToProjectionVector * SetRadius;
+        
+
+        // Set the target object to visualize it
+        TargetObject.transform.position = target;
+
+        // now calculate the steering angle
+        
         Vector3 targetDir = target - Wheelchair.transform.position;
                
         Vector2 v0 = new Vector2(Wheelchair.transform.forward.x, Wheelchair.transform.forward.z);
