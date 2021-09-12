@@ -12,9 +12,7 @@ public class WheelChairControllerScript : MonoBehaviour
     /// A simple PID controlled wheelchair simulation to drive in a circle
     /// </summary>
     /// 
-    /// <note>
-    /// The camera is facing down along the z angle, thus all forward directions are transform.up not transform.forward!
-    /// </note>
+    /// 
 
     
 
