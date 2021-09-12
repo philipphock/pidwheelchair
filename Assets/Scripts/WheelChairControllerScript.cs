@@ -115,6 +115,7 @@ public class WheelChairControllerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         float m = 1;
         
         if (Input.GetKey(KeyCode.LeftArrow)){
@@ -147,6 +148,7 @@ public class WheelChairControllerScript : MonoBehaviour
 
         rw.forwardFriction = lw.forwardFriction;
         rw.sidewaysFriction = lw.sidewaysFriction;
+        */
     }
 
     void FixedUpdate(){
@@ -194,12 +196,11 @@ public class WheelChairControllerScript : MonoBehaviour
 
 
 
-            // this part is for controlling the wheels
-            // we simply move/steer both wheels by adding relative forces to each wheel and subtracting a factor from it when steering in a direction
             steer = c;
 
         }
 
+        // this part is for controlling the wheels
 
         float lrAbs = Mathf.Abs(steer);
         float brL = 0;
@@ -221,12 +222,12 @@ public class WheelChairControllerScript : MonoBehaviour
         throttleLeft = forward - brL;
         throttleRight = forward - brR;
 
-        //rbl.AddRelativeForce(Vector3.forward * throttleLeft * speedFactor * Time.deltaTime);
-        //rbr.AddRelativeForce(Vector3.forward * throttleRight * speedFactor * Time.deltaTime);
         rw.motorTorque = throttleLeft * speedFactor;
         lw.motorTorque = throttleRight * speedFactor;
 
         IsRadius = Vector3.Distance(Center.transform.position, Wheelchair.transform.position);
+
+        // make wheels spin (just for style)
         UpdateWheelPose(lw, WheelChairLeftMesh.transform);
         UpdateWheelPose(rw, WheelChairRightMesh.transform);
 
